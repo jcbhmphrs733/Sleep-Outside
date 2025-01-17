@@ -20,6 +20,7 @@ export default class ProductListing {
     }
 
     renderList(list) {
+        list = list.slice(0, 4);
         renderListWithTemplate(productCardTemplate, this.listElement, list);
     }
 
