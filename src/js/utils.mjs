@@ -12,6 +12,7 @@ export function getLocalStorage(key) {
 // save data to local storage
 export function setLocalStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
+  updateCartCount()
 }
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
@@ -30,4 +31,17 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
   }
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
   
+}
+
+// cart count
+
+export function updateCartCount(){
+  const cartCount = document.querySelector(".cart-count")
+  cartCount.innerHTML = ""
+  const count = getLocalStorage("so-cart").length
+  if (count>0){
+    cartCount.innerHTML = count
+  } else {
+    cartCount.innerHTML = 0
+  }
 }
