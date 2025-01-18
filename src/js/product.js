@@ -16,3 +16,7 @@ async function addToCartHandler(e) {
 document
   .getElementById("addToCart")
   .addEventListener("click", addToCartHandler);
+
+const productId = getParams('id');
+
+console.log(dataSource.findProductById(productId));
