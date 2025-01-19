@@ -1,4 +1,4 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage,setLocalStorage } from "./utils.mjs";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
@@ -8,11 +8,21 @@ function renderCartContents() {
 
 function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
-  <a href="#" class="cart-card__image">
+  <a href="#" class="cart-card__image" style="position: relative; display: block;">
     <img
       src="${item.Image}"
       alt="${item.Name}"
+      style="display: block; width: 100%;"
     />
+    <svg
+      class="cart-card__icon"
+      style="position: absolute; top: 10px; left: 10px; width: 20px; height: 20px;"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <title>delete from cart</title>
+      <path d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" />
+    </svg>
   </a>
   <a href="#">
     <h2 class="card__name">${item.Name}</h2>
@@ -25,4 +35,24 @@ function cartItemTemplate(item) {
   return newItem;
 }
 
+function addRemoveEventListeners() {
+  const icons = document.querySelectorAll(".cart-card__icon");
+  icons.forEach(icon => {
+    icon.addEventListener("click", (event) => {
+      console.log("icon clicked");
+      const cartItem = event.target.closest(".cart-card");
+      const itemIndex = cartItem.getAttribute("data-index");
+      removeItemFromCart(itemIndex);
+      cartItem.remove();
+    });
+  });
+}
+
+function removeItemFromCart(index) {
+  let cartItems = getLocalStorage("so-cart");
+  cartItems.splice(index, 1);
+  setLocalStorage("so-cart", cartItems);
+}
+
 renderCartContents();
+addRemoveEventListeners();
