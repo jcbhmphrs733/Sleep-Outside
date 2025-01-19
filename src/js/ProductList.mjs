@@ -13,7 +13,7 @@ function productCardTemplate(product) {
   </li>`;
 }
 
-export default class ProductListing {
+export default class ProductList {
     constructor(category, dataSource, listElement) {
         this.category = category;
         this.dataSource = dataSource;
@@ -26,6 +26,7 @@ export default class ProductListing {
     }
 
     renderList(list) {
-        renderListWithTemplate(productCardTemplate, this.listElement, list);
+        const strings = list.map(productCardTemplate);
+        this.listElement.insertAdjacentHTML("afterbegin", strings.join(""));
     }
 }
