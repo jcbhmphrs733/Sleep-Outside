@@ -22,7 +22,10 @@ export default class ProductList {
 
     async init() {
         const list = await this.dataSource.getData();
-        this.renderList(list);
+        console.log(list);
+        const filteredList = list.filter(product => product.Id !== "989CG" && product.Id !== "880RT");
+        this.renderList(filteredList);
+        
     }
 
     renderList(list) {
