@@ -22,11 +22,14 @@ export default class ProductList {
 
     async init() {
         const list = await this.dataSource.getData();
-        this.renderList(list)
+        this.renderList(list);
     }
 
     renderList(list) {
-        const strings = list.map(productCardTemplate);
-        this.listElement.insertAdjacentHTML("afterbegin", strings.join(""));
+        renderListWithTemplate(
+            productCardTemplate, 
+            this.listElement, 
+            list
+        );
     }
 }
