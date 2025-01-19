@@ -1,4 +1,4 @@
-import { getLocalStorage,setLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
@@ -37,9 +37,8 @@ function cartItemTemplate(item) {
 
 function addRemoveEventListeners() {
   const icons = document.querySelectorAll(".cart-card__icon");
-  icons.forEach(icon => {
+  icons.forEach((icon) => {
     icon.addEventListener("click", (event) => {
-      console.log("icon clicked");
       const cartItem = event.target.closest(".cart-card");
       const itemIndex = cartItem.getAttribute("data-index");
       removeItemFromCart(itemIndex);
