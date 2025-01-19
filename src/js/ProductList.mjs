@@ -13,7 +13,7 @@ function productCardTemplate(product) {
   </li>`;
 }
 
-export default class ProductListing {
+export default class ProductList {
     constructor(category, dataSource, listElement) {
         this.category = category;
         this.dataSource = dataSource;
@@ -22,10 +22,17 @@ export default class ProductListing {
 
     async init() {
         const list = await this.dataSource.getData();
-        this.renderList(list)
+        console.log(list);
+        const filteredList = list.filter(product => product.Id !== "989CG" && product.Id !== "880RT");
+        this.renderList(filteredList);
+        
     }
 
     renderList(list) {
-        renderListWithTemplate(productCardTemplate, this.listElement, list);
+        renderListWithTemplate(
+            productCardTemplate, 
+            this.listElement, 
+            list
+        );
     }
 }
