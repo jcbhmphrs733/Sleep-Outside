@@ -1,10 +1,11 @@
-import ProductListing from "./ProductList.mjs"
+import ProductData from "./ProductData.mjs";
+import ProductList from "./ProductList.mjs";
 import { updateCartCount } from "./utils.mjs"
 
-const refer = document.querySelector(".product-list")
-refer.innerHTML = ""
 
-let productListing = new ProductListing("tents", "tents", refer)
+const dataSource = new ProductData("tents");
+const element = document.querySelector(".product-list");
+const listing = new ProductList("tents", dataSource, element);
 
-productListing.init()
+listing.init();
 updateCartCount()
