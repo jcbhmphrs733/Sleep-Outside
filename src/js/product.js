@@ -8,5 +8,4 @@ const productID = getParams("product");
 
 const product = new ProductDetails(productID, dataSource);
 product.init();
-
-loadHeaderFooter()
+loadHeaderFooter();

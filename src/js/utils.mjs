@@ -72,10 +72,10 @@ export function renderWithTemplate(
 
 export async function loadHeaderFooter(){
   const headerElement = document.querySelector("#main-header")
-  const headerTemplate = await loadTemplate("./public/partials/header.html")
+  const headerTemplate = await loadTemplate("../partials/header.html")
 
   const footerElement = document.querySelector("#main-footer")
-  const footerTemplate = await loadTemplate("./public/partials/footer.html")
+  const footerTemplate = await loadTemplate("../partials/footer.html")
   
   renderWithTemplate(headerTemplate,headerElement,null,updateCartCount)
   renderWithTemplate(footerTemplate,footerElement)
