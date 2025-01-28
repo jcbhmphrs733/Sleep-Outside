@@ -57,3 +57,32 @@ export function updateCartCount(){
     cartCount.innerHTML = 0
   }
 }
+
+export function renderWithTemplate(
+  template,
+  parentElement,
+  data,
+  callback
+) {
+  parentElement.insertAdjacentHTML("afterbegin",template);
+  if (callback) {
+    callback()
+  }
+}
+
+export async function loadHeaderFooter(){
+  const headerElement = document.querySelector("#main-header")
+  const headerTemplate = await loadTemplate("../partials/header.html")
+
+  const footerElement = document.querySelector("#main-footer")
+  const footerTemplate = await loadTemplate("../partials/footer.html")
+  
+  renderWithTemplate(headerTemplate,headerElement,null,updateCartCount)
+  renderWithTemplate(footerTemplate,footerElement)
+}
+
+export async function loadTemplate(path){
+  const html = await fetch(path)
+  const template = await html.text()
+  return template
+}
