@@ -146,6 +146,25 @@ button {
   text-decoration: none;
   color: var(--dark-grey);
 }
+
+.category-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.category-icons img {
+  border: 1px solid black;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  transition: 0.5ms ease;
+}
+
+.category-icons img:hover {
+  scale: 1.01;
+  box-shadow: 0px 0px 10px var(--primary-color);
+}
 /* Styles for product lists */
 .product-card {
   flex: 1 1 45%;
