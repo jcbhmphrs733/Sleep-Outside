@@ -233,9 +233,27 @@ button {
     font-size: inherit;
     grid-template-columns: 150px auto 15%;
   }
+
+  .categories {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    text-decoration: none;
+  }
+
+}
+
+.categories a {
+  text-decoration: none;
+  color: var(--dark-grey);
+}
+
+.categories figcaption {
+  text-align: center;
 }
 
 footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+
