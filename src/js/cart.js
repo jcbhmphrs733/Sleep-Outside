@@ -1,4 +1,4 @@
-import ShoppingCart from "shoppingCart.mjs";
+import ShoppingCart from "./shoppingCart.mjs";
 import { loadHeaderFooter } from "./utils.mjs";
 
 loadHeaderFooter();
