@@ -1,7 +1,6 @@
 import { updateCartCount, getParams, loadHeaderFooter } from "./utils.mjs";
-import ProductData from "./ProductData.mjs";
-import ProductList from "./ProductList.mjs";
-console.log("productListing.js loaded");
+import ProductData from "./productData.mjs";
+import ProductList from "./productList.mjs";
 
 loadHeaderFooter();
 

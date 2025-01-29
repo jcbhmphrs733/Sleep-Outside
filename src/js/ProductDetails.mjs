@@ -1,5 +1,4 @@
 import { getLocalStorage, setLocalStorage } from './utils.mjs';
-console.log("ProductDetails.js loaded");
 function productDetailsTemplate(product) {
   return `<section class="product-details"> <h3>${product.Brand.Name}</h3>
             <h2 class="divider">${product.NameWithoutBrand}</h2>

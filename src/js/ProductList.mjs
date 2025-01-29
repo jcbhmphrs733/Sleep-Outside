@@ -1,5 +1,4 @@
 import { renderListWithTemplate } from './utils.mjs';
-console.log("ProductList.js loaded");
 function productCardTemplate(product) {
     return `<li class="product-card">
     <a href="product_pages/index.html?product=${product.Id}">
@@ -24,6 +23,8 @@ export default class ProductList {
         const list = await this.dataSource.getData(this.category);
         const filteredList = list.filter(product => product.Id !== "989CG" && product.Id !== "880RT");
         this.renderList(filteredList);
+
+        document.querySelectorAll(".title").innerHTML = this.category;
         
     }
 
