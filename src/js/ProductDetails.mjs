@@ -22,7 +22,7 @@ function productDetailsTemplate(product) {
           </section>`;
 }
 
-export default class ProductDetails {
+export default class productDetails {
 
     constructor(productId, dataSource) {
       this.productId = productId;
@@ -32,7 +32,7 @@ export default class ProductDetails {
     
     async init() {
       this.product = await this.dataSource.findProductById(this.productId);
-      this.renderProductDetails("main");
+      this.renderproductDetails("main");
       document
         .getElementById("addToCart")
         .addEventListener("click", this.addToCart.bind(this));
@@ -52,7 +52,7 @@ export default class ProductDetails {
       setLocalStorage("so-cart", newStorage);
     }
     
-    renderProductDetails(selector) {
+    renderproductDetails(selector) {
       const element = document.querySelector(selector);
       element.insertAdjacentHTML(
         "afterBegin",
