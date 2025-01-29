@@ -7,7 +7,7 @@ function convertToJson(res) {
   }
 }
 
-export default class ProductData {
+export default class productData {
   constructor(category) {
     this.category = category;
     this.path = `../json/${this.category}.json`;
