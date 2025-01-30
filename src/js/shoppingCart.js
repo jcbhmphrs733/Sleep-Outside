@@ -36,12 +36,12 @@ export default class ShoppingCart {
       icon.addEventListener("click", (event) => {
         const cartItem = event.target.closest(".cart-card");
         const itemIndex = cartItem.getAttribute("data-index");
-        removeItemFromCart(itemIndex);
+        this.removeItemFromCart(itemIndex);
         cartItem.remove();
       });
     });
   }
-  
+
   totalPrice(ObjectList) {
     let total = 0;
     ObjectList.forEach((item) => {
@@ -51,16 +51,14 @@ export default class ShoppingCart {
   }
   renderCartContents() {
     const cartItems = getLocalStorage(this.key);
-    console.log(cartItems);
     const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-    console.log(htmlItems);
     document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
 
     if (cartItems.length !== 0) {
       let totalElement = document.querySelector(".cart-footer");
       let total = document.querySelector(".cart-total");
       totalElement.style.display = "block";
-      total.innerHTML = `Total price: $${totalPrice(cartItems)}`;
+      total.innerHTML = `Total price: $${this.totalPrice(cartItems)}`;
     }
   }
 }

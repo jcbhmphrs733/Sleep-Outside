@@ -1,4 +1,4 @@
-import { updateCartCount, getParams, loadHeaderFooter } from "./utils.mjs";
+import { getParams, loadHeaderFooter } from "./utils.mjs";
 import ProductData from "./productData.mjs";
 import ProductList from "./productList.mjs";
 
