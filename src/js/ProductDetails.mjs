@@ -1,10 +1,11 @@
 import { getLocalStorage, setLocalStorage } from './utils.mjs';
+
 function productDetailsTemplate(product) {
   return `<section class="product-details"> <h3>${product.Brand.Name}</h3>
             <h2 class="divider">${product.NameWithoutBrand}</h2>
             <img
               class="divider"
-              src="${product.Image}"
+              src="${product.Images.PrimaryLarge}"
               alt="${product.NameWithoutBrand}"
             />
             <p class="product-card__price">$${product.FinalPrice}</p>
@@ -32,9 +33,12 @@ export default class ProductDetails {
     async init() {
       this.product = await this.dataSource.findProductById(this.productId);
       this.renderProductDetails("main");
+
       document
         .getElementById("addToCart")
         .addEventListener("click", this.addToCart.bind(this));
+      
+      console.log(this.product);
     }
 
     addToCart() {

@@ -34,6 +34,7 @@ export function renderListWithTemplate(
     parentElement.innerHTML = "";
   }
   parentElement.insertAdjacentHTML(position, strings.join(""));
+  updateCartCount();
  }
 
 // set a listener for both touchend and click
