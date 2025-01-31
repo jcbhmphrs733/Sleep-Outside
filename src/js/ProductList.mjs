@@ -21,10 +21,9 @@ export default class ProductList {
 
     async init() {
         const list = await this.dataSource.getData(this.category);
-        const filteredList = list.filter(product => product.Id !== "989CG" && product.Id !== "880RT");
-        this.renderList(filteredList);
+        this.renderList(list);
 
-        document.querySelectorAll(".title").innerHTML = this.category;
+        document.querySelector(".title").innerHTML = this.category.toUpperCase();
         
     }
 

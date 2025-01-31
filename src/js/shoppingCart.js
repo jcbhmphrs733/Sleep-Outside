@@ -1,7 +1,7 @@
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 function cartItemTemplate(item) {
-  const newItem = `<li class="cart-card divider">
+  return `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img
       src="${item.Image}"
@@ -15,8 +15,6 @@ function cartItemTemplate(item) {
   <p class="cart-card__quantity">qty: 1</p>
   <p class="cart-card__price">$${item.FinalPrice}</p>
 </li>`;
-
-  return newItem;
 }
 
 export default class ShoppingCart {
@@ -24,13 +22,14 @@ export default class ShoppingCart {
     this.key = key;
     this.parentSelector = parentSelector;
   }
+
   removeItemFromCart(index) {
     let cartItems = getLocalStorage("so-cart");
     cartItems.splice(index, 1);
     setLocalStorage("so-cart", cartItems);
   }
 
-  addRemoveEventListeners() {
+  createTrashCanEventListeners() {
     const icons = document.querySelectorAll(".cart-card__icon");
     icons.forEach((icon) => {
       icon.addEventListener("click", (event) => {
@@ -42,17 +41,25 @@ export default class ShoppingCart {
     });
   }
 
-  totalPrice(ObjectList) {
+  updateTotalPrice(ObjectList) {
     let total = 0;
     ObjectList.forEach((item) => {
       total += item.FinalPrice;
     });
-    return total;
+    if (cartItems.length !== 0) {
+      let totalElement = document.querySelector(".cart-footer");
+      let total = document.querySelector(".cart-total");
+      totalElement.style.display = "block";
+      total.innerHTML = `Total price: $${this.totalPrice(cartItems)}`;
+    }
   }
+
   renderCartContents() {
     const cartItems = getLocalStorage(this.key);
     const htmlItems = cartItems.map((item) => cartItemTemplate(item));
     document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
+
+  
 
     if (cartItems.length !== 0) {
       let totalElement = document.querySelector(".cart-footer");

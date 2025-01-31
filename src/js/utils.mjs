@@ -46,8 +46,6 @@ export function setClick(selector, callback) {
   qs(selector).addEventListener("click", callback);
 }
 
-// cart count
-
 export function updateCartCount(){
   const cartCount = document.querySelector(".cart-count")
   cartCount.innerHTML = ""
@@ -80,6 +78,7 @@ export async function loadHeaderFooter(){
   
   renderWithTemplate(headerTemplate,headerElement)
   renderWithTemplate(footerTemplate,footerElement)
+  updateCartCount()
 }
 
 export async function loadTemplate(path){
