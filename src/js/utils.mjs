@@ -13,6 +13,7 @@ export function getLocalStorage(key) {
 export function setLocalStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
   updateCartCount()
+  cartAnimation()
 }
 
 export function getParams(param) {
@@ -55,6 +56,14 @@ export function updateCartCount(){
   } else {
     cartCount.innerHTML = 0
   }
+}
+
+export function cartAnimation(){
+  const cart = document.querySelector(".cart")
+  cart.classList.add("cart-animation")
+  setTimeout(() => {
+    cart.classList.remove("cart-animation")
+  }, 500)
 }
 
 export function renderWithTemplate(
