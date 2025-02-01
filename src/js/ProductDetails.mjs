@@ -41,8 +41,6 @@ export default class ProductDetails {
     }
 
     addToCart() {
-      console.log(this.product.Images.PrimaryMedium);
-      console.log(`product ID:` + this.product.Id);
       const newStorage = getLocalStorage("so-cart");
       newStorage.push(this.product);
       setLocalStorage("so-cart", newStorage);
