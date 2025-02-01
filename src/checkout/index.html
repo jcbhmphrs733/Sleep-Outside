@@ -32,12 +32,12 @@
             <label for="streetAddress">Street Address: <input type="text" name="streetAddress" id="streetAddress" required></label>
             <label for="City">City: <input type="text" id="City" name="City" required></label>
             <label for="State">State: <input type="text" id="State" name="State" required></label>
-            <label for="zip">Zip Code: <input type="number" name="zip" id="zip"></label>
+            <label for="zip">Zip Code: <input name="zip" id="zip"></label>
           </fieldset>
           <fieldset>
             <legend>Payment</legend>
             <label for="card-number">Credit Card: <input type="text" id="card-number" name="card-number" pattern="\d{16}" maxlength="16" required></label>
-            <label for="card-expiration">Expiration Date: <input type="month" id="card-expiration" name="card-expiration" required></label>
+            <label for="card-expiration">Expiration Date: <input id="card-expiration" name="card-expiration" required></label>
             <label for="card-cvv">CVV: <input type="text" id="card-cvv" name="card-cvv" pattern="\d{3}" maxlength="3" required></label>
           </fieldset>
           <fieldset class= "checkout-summary">
@@ -61,7 +61,7 @@
               </li>
             </ul>
           </fieldset>
-          <button id="btnSubmit" type="submit">Complete purchase</button>
+          <button id="checkoutSubmit" type="submit">Complete purchase</button>
         </form>
       </section>
     </main>
