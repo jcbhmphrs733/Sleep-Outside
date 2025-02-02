@@ -21,18 +21,22 @@ export default class ProductList {
   }
 
   async init() {
+    this.products = await this.dataSource.getData(this.category);
     const list = await this.dataSource.getData(this.category);
+    console.log(this.products);
     this.renderList(list);
 
     document.querySelector(".title").innerHTML = this.category.toUpperCase();
   }
 
   renderList(list) {
+    this.listElement.innerHTML = "";
     renderListWithTemplate(productCardTemplate, this.listElement, list);
   }
 
   sortProducts(sortBy) {
-    let sortedProducts;
+    let sortedProducts = [...this.products];
+
     if (sortBy === "name") {
       sortedProducts = [...this.products].sort((a, b) =>
         a.Name.localeCompare(b.Name),
@@ -44,5 +48,6 @@ export default class ProductList {
     }
     console.log(sortedProducts);
     this.renderList(sortedProducts);
+    
   }
 }
