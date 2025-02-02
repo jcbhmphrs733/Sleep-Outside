@@ -9,4 +9,10 @@ const data = new ExternalServices();
 const element = document.querySelector(".product-list");
 const listing = new ProductList(category, data, element);
 
-listing.init();
+listing.init().then(() => {
+    document.getElementById("sort-options").addEventListener("change", (event) => {
+        const sortBy = event.target.value;
+        listing.sortProducts(sortBy);
+    });    
+});
+
