@@ -1,12 +1,18 @@
 import { getParams, loadHeaderFooter } from "./utils.mjs";
-import ProductData from "./productData.mjs";
-import ProductList from "./productList.mjs";
+import ExternalServices from "./ExternalServices.mjs";
+import ProductList from "./ProductList.mjs";
 
 loadHeaderFooter();
 
 const category = getParams("category");
-const data = new ProductData();
+const data = new ExternalServices();
 const element = document.querySelector(".product-list");
 const listing = new ProductList(category, data, element);
 
-listing.init();
+listing.init().then(() => {
+    document.getElementById("sort-options").addEventListener("change", (event) => {
+        const sortBy = event.target.value;
+        listing.sortProducts(sortBy);
+    });    
+});
+

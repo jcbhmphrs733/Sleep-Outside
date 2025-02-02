@@ -7,7 +7,7 @@ export function qs(selector, parent = document) {
 
 // retrieve data from localstorage
 export function getLocalStorage(key) {
-  return JSON.parse(localStorage.getItem(key))|| [];
+  return JSON.parse(localStorage.getItem(key)) || [];
 }
 // save data to local storage
 export function setLocalStorage(key, data) {
@@ -28,17 +28,15 @@ export function renderListWithTemplate(
   parentElement,
   list,
   position = "afterbegin",
-  clear = false
- ) {
+  clear = false,
+) {
   const strings = list.map(templateFn);
   if (clear) {
     parentElement.innerHTML = "";
   }
   parentElement.insertAdjacentHTML(position, strings.join(""));
-  updateCartCount();
- }
+}
 
-// set a listener for both touchend and click
 export function setClick(selector, callback) {
   qs(selector).addEventListener("touchend", (event) => {
     event.preventDefault();
@@ -47,14 +45,14 @@ export function setClick(selector, callback) {
   qs(selector).addEventListener("click", callback);
 }
 
-export function updateCartCount(){
-  const cartCount = document.querySelector(".cart-count")
-  cartCount.innerHTML = ""
-  const count = getLocalStorage("so-cart").length
-  if (count>0){
-    cartCount.innerHTML = count
+export function updateCartCount() {
+  const cartCount = document.querySelector(".cart-count");
+  cartCount.innerHTML = "";
+  const count = getLocalStorage("so-cart").length;
+  if (count > 0) {
+    cartCount.innerHTML = count;
   } else {
-    cartCount.innerHTML = 0
+    cartCount.innerHTML = 0;
   }
 }
 
@@ -66,32 +64,56 @@ export function cartAnimation(){
   }, 500)
 }
 
-export function renderWithTemplate(
-  template,
-  parentElement,
-  data,
-  callback
-) {
-  parentElement.insertAdjacentHTML("afterbegin",template);
+export function cartAnimation(){
+  const cart = document.querySelector(".cart")
+  cart.classList.add("cart-animation")
+  setTimeout(() => {
+    cart.classList.remove("cart-animation")
+  }, 500)
+}
+
+export function renderWithTemplate(template, parentElement, data, callback) {
+  parentElement.insertAdjacentHTML("afterbegin", template);
   if (callback) {
-    callback()
+    callback();
   }
 }
 
-export async function loadHeaderFooter(){
-  const headerElement = document.querySelector("#main-header")
-  const headerTemplate = await loadTemplate("../partials/header.html")
+export async function loadHeaderFooter() {
+  const headerElement = document.querySelector("#main-header");
+  const headerTemplate = await loadTemplate("../partials/header.html");
 
-  const footerElement = document.querySelector("#main-footer")
-  const footerTemplate = await loadTemplate("../partials/footer.html")
-  
-  renderWithTemplate(headerTemplate,headerElement)
-  renderWithTemplate(footerTemplate,footerElement)
-  updateCartCount()
+  const footerElement = document.querySelector("#main-footer");
+  const footerTemplate = await loadTemplate("../partials/footer.html");
+
+  renderWithTemplate(headerTemplate, headerElement);
+  renderWithTemplate(footerTemplate, footerElement);
+  updateCartCount();
 }
 
-export async function loadTemplate(path){
-  const html = await fetch(path)
-  const template = await html.text()
-  return template
+export async function loadTemplate(path) {
+  const html = await fetch(path);
+  const template = await html.text();
+  return template;
+}
+
+export function removeItemFromCart(trashIndex) {
+  let cartItems = getLocalStorage("so-cart");
+  cartItems.splice(trashIndex, 1);
+  setLocalStorage("so-cart", cartItems);
+}
+
+export function updateTotalPrice(cartItems) {
+  if (cartItems === null) {
+    return 0;
+  } else {
+    let total = 0;
+    cartItems.forEach((item) => {
+      total += item.FinalPrice;
+    });
+    const totalElement = document.querySelector(".cart-footer");
+    totalElement.style.display = "block";
+    const totalText = document.querySelector(".cart-total");
+    totalText.innerHTML = `Total price: $${total}`;
+  }
 }
