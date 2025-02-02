@@ -1,6 +1,6 @@
-import { renderListWithTemplate } from './utils.mjs';
+import { renderListWithTemplate } from "./utils.mjs";
 function productCardTemplate(product) {
-    return `<li class="product-card">
+  return `<li class="product-card">
     <a href="/product_pages/index.html?product=${product.Id}">
     <img
       src="${product.Images.PrimaryMedium}"
@@ -13,25 +13,36 @@ function productCardTemplate(product) {
 }
 
 export default class ProductList {
-    constructor(category, dataSource, listElement) {
-        this.category = category;
-        this.dataSource = dataSource;
-        this.listElement = listElement;
-    }
+  constructor(category, dataSource, listElement) {
+    this.category = category;
+    this.dataSource = dataSource;
+    this.listElement = listElement;
+    this.products = [];
+  }
 
-    async init() {
-        const list = await this.dataSource.getData(this.category);
-        this.renderList(list);
+  async init() {
+    const list = await this.dataSource.getData(this.category);
+    this.renderList(list);
 
-        document.querySelector(".title").innerHTML = this.category.toUpperCase();
-        
-    }
+    document.querySelector(".title").innerHTML = this.category.toUpperCase();
+  }
 
-    renderList(list) {
-        renderListWithTemplate(
-            productCardTemplate, 
-            this.listElement, 
-            list
-        );
+  renderList(list) {
+    renderListWithTemplate(productCardTemplate, this.listElement, list);
+  }
+
+  sortProducts(sortBy) {
+    let sortedProducts;
+    if (sortBy === "name") {
+      sortedProducts = [...this.products].sort((a, b) =>
+        a.Name.localeCompare(b.Name),
+      );
+    } else if (sortBy === "price") {
+      sortedProducts = [...this.products].sort(
+        (a, b) => a.FinalPrice - b.FinalPrice,
+      );
     }
+    console.log(sortedProducts);
+    this.renderList(sortedProducts);
+  }
 }
