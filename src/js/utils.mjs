@@ -18,9 +18,20 @@ export function setLocalStorage(key, data) {
 
 export function getParams(param) {
   const queryString = window.location.search;
+  console.log(queryString);
   const urlParams = new URLSearchParams(queryString);
   const product = urlParams.get(param);
+  console.log(product);
   return product;
+}
+
+export function setLocalStorageSearch(key, data) {
+  // localStorage.setItem(key, JSON.stringify(data))
+  localStorage.setItem(key, JSON.stringify(data));
+}
+
+export function getLocalStorageSearch(key) {
+  return JSON.parse(localStorage.getItem(key));
 }
 
 export function renderListWithTemplate(
@@ -64,14 +75,6 @@ export function cartAnimation(){
   }, 500)
 }
 
-export function cartAnimation(){
-  const cart = document.querySelector(".cart")
-  cart.classList.add("cart-animation")
-  setTimeout(() => {
-    cart.classList.remove("cart-animation")
-  }, 500)
-}
-
 export function renderWithTemplate(template, parentElement, data, callback) {
   parentElement.insertAdjacentHTML("afterbegin", template);
   if (callback) {
@@ -89,6 +92,16 @@ export async function loadHeaderFooter() {
   renderWithTemplate(headerTemplate, headerElement);
   renderWithTemplate(footerTemplate, footerElement);
   updateCartCount();
+
+  function setSearch() {
+    var inputSearch = document.querySelector("#searchbar").value.toLowerCase();
+    setLocalStorageSearch("search-bar", inputSearch)
+        
+  
+  };
+
+  document.querySelector(".goSearch").addEventListener("click", ()=>setSearch()); 
+  
 }
 
 export async function loadTemplate(path) {
