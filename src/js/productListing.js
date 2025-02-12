@@ -1,6 +1,6 @@
-import { getParams, loadHeaderFooter } from "./utils.mjs";
+import { getLocalStorageSearch, getParams, loadHeaderFooter } from "./utils.mjs";
 import ExternalServices from "./ExternalServices.mjs";
-import ProductList from "./ProductList.mjs";
+import ProductList, {Search} from "./ProductList.mjs";
 
 loadHeaderFooter();
 
@@ -15,4 +15,13 @@ listing.init().then(() => {
         listing.sortProducts(sortBy);
     });    
 });
+
+
+const searchCriteria = getLocalStorageSearch("search-bar");
+
+if (searchCriteria !== null) {
+    const searchListing = new Search(searchCriteria, data, element);
+searchListing.initSearch();
+
+}
 

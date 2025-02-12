@@ -48,6 +48,35 @@ header {
   text-decoration: none;
   color: var(--font-body);
 }
+.inputContener {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border: 1px solid var(--primary-color);
+  border-radius: 20px;
+  overflow: hidden;  
+  justify-content: space-between;
+  padding: 2px 10px;
+}
+#searchbar {
+  
+  border: none;
+  outline: none;  
+}
+
+.inputContener,
+.checkout {
+  align-self: center;  
+}
+.inputContener i {
+  font-size: 22px;
+  color: black;
+}
+.inputContener a {
+  display: block;  
+  cursor: pointer;
+  text-decoration: none;
+}
 .hero {
   position: relative;
 }
