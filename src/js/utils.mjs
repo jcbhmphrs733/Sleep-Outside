@@ -64,13 +64,7 @@ export function cartAnimation(){
   }, 500)
 }
 
-export function cartAnimation(){
-  const cart = document.querySelector(".cart")
-  cart.classList.add("cart-animation")
-  setTimeout(() => {
-    cart.classList.remove("cart-animation")
-  }, 500)
-}
+
 
 export function renderWithTemplate(template, parentElement, data, callback) {
   parentElement.insertAdjacentHTML("afterbegin", template);
